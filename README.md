@@ -31,3 +31,14 @@
 ### 客户端
 1. bootstrap
 2. jquery
+
+### 页面
+
+1. / 首页
+2. /list 列表页
+3. ／move/:id 详情页
+4. /admin/update/:id 更新
+5. /admin/movie 录入
+6. /admin/list 管理列表
+7. /admin/movie/new 录入新数据 （接口）
+8. /admin/movie/delete 删除记录 （接口）
