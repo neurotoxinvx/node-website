@@ -36,7 +36,7 @@
 
 1. / 首页
 2. /list 列表页
-3. ／move/:id 详情页
+3. /move/:id 详情页
 4. /admin/update/:id 更新
 5. /admin/movie 录入
 6. /admin/list 管理列表
