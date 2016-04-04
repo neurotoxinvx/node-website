@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var _ = require('underscore');
 
 var Movie = require('./models/movie');
+var Chat = require('./models/chat')
 
 var port = process.env.PORT || 3000;
 var app = express();
@@ -52,28 +53,57 @@ app.get('/', function (req, res) {
         }
 
         res.render('index', {
-            title: 'imooc 首页',
+            title: '玩点儿啥',
             movies: movies
         });
     });
 });
 
-// 列表页
+// 电影列表页
 app.get('/list', function (req, res) {
     Movie.fetch(function (err, movies) {
         if (err) {
             console.log(err);
         }
 
-        res.render('index', {
-            title: 'imooc 列表页',
+        res.render('list', {
+            title: '看电影吗',
             movies: movies
         });
     });
 });
 
-// 详情页
-app.get('/movie/:id', function (req, res) {
+// 音乐页面
+app.get('/music', function(req, res){
+    res.render('music', {
+        title: '听歌儿吗'
+    });
+});
+
+// 聊天儿啊
+app.get('/chat', function(req, res){
+    Chat.fetch(function (err, words) {
+        if (err) {
+            console.log(err);
+        }
+
+        res.render('chat', {
+            title: '聊天儿啊',
+            words: words
+        });
+    });
+});
+
+// 加我微信啊
+
+app.get('/aboutme', function(req, res){
+    res.render('aboutme', {
+        title: '加我微信啊'
+    });
+});
+
+// 电影详情页
+app.get('/detail/:id', function (req, res) {
     var id = req.params.id;
 
     Movie.findById(id, function (err, movie) {
@@ -81,31 +111,31 @@ app.get('/movie/:id', function (req, res) {
             console.log(err);
         }
         res.render('detail', {
-            title: 'imooc ' + movie.title,
+            title: movie.title,
             movie: movie
         });
         return false;
     });
 });
 
-// 更新
+// 电影后台更新
 app.get('/admin/update/:id', function (req, res) {
     var id = req.params.id;
 
     if (id) {
         Movie.findById(id, function (err, movie) {
-            res.render('admin', {
-                title: 'imooc 后台更新',
+            res.render('input', {
+                title: '后台更新',
                 movie: movie
             });
         });
     }
 });
 
-// 录入
-app.get('/admin/movie', function (req, res) {
-    res.render('admin', {
-        title: 'imoooc 后台录入页',
+// 电影后台录入
+app.get('/admin/input', function (req, res) {
+    res.render('input', {
+        title: '后台录入电影',
         movie: {
             title: '',
             doctor: '',
@@ -119,15 +149,15 @@ app.get('/admin/movie', function (req, res) {
     });
 });
 
-// 管理列表
+// 电影后台管理列表
 app.get('/admin/list', function (req, res) {
     Movie.fetch(function (err, movies) {
         if (err) {
             console.log(err);
         }
 
-        res.render('list', {
-            title: 'imooc 列表页',
+        res.render('admin-list', {
+            title: '后台电影管理',
             movies: movies
         });
     });
@@ -136,7 +166,7 @@ app.get('/admin/list', function (req, res) {
 
 //--------------------------------------------------------------【请求接口】
 
-//录入新数据
+//电影录入新数据
 app.post('/admin/movie/new', function (req, res) {
     var id = req.body.movie._id;
     var movieObj = req.body.movie;
@@ -153,7 +183,7 @@ app.post('/admin/movie/new', function (req, res) {
                     console.log(err);
                 }
 
-                res.redirect('/movie/' + movie._id);
+                res.redirect('/detail/' + movie._id);
             });
         });
     } else {
@@ -173,12 +203,12 @@ app.post('/admin/movie/new', function (req, res) {
                 console.log(err);
             }
 
-            res.redirect('/movie/' + movie._id);
+            res.redirect('/detail/' + movie._id);
         });
     }
 });
 
-// 删除记录
+// 电影删除记录
 
 app.post('/admin/movie/delete', function (req, res) {
     var id = req.body._id;
@@ -188,5 +218,23 @@ app.post('/admin/movie/delete', function (req, res) {
         }
         console.log('删除成功');
         res.send(docs);
+    });
+});
+
+// 留言接口
+
+app.post('/sendmessage', function(req, res){
+    var chatObj = req.body.chat;
+    var _chat;
+    _chat = new Chat({
+        word: chatObj.word
+    });
+
+    _chat.save(function (err, chat) {
+        if (err) {
+            console.log(err);
+        }
+
+        res.redirect('/chat');
     });
 });

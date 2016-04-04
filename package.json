@@ -1,6 +1,6 @@
 {
   "name": "mongoose-example",
-  "description":"imooc的教程测试",
+  "description":"玩点儿啥",
   "version": "0.0.2",
   "main":"app.js",
   "dependencies": {

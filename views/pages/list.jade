@@ -1,46 +1,13 @@
 extends ../layout
 block content
-    .container
-        .row
-            table.table.table-hover.table-bordered
-                thead
-                    tr
-                        th  电影名字
-                        th  导演
-                        th  国家
-                        th  上映年份
-                        //th  录入时间
-                        th  查看
-                        th  更新
-                        th  删除
-                tbody
-                    each item in movies
-                        tr(class="item-id-#{item._id}")
-                            td #{item.title}
-                            td #{item.doctor}
-                            td #{item.country}
-                            td #{item.year}
-                            //td #{moment(item.meta.createdAt).format('MM/DD/YYYY')}
-                            td: a(target="_blank",href="../movie/#{item._id}") 查看
-                            td: a(target="_blank",href="../admin/update/#{item._id}") 修改
-                            td
-                                button.btn.btn-danger.del(type="button",data-id="#{item._id}") 删除
-                        
-block script
-    script.
-        $('[data-id]').on('click',function(){
-            var $this=$(this);
-            $.ajax({
-                type: "POST",
-                url: "/admin/movie/delete",
-                async: true,
-                dataType: "json",
-                data: {
-                    _id:$this.data("id")
-                },
-                success: function (data) {
-                    $this.parents('tr').remove();
-                    console.log(data);
-                }
-            });
-        });
+	.jumbotron.masthead(style="padding-bottom:0;margin-bottom:0;")
+		.container
+			.row(style="padding:50px 0;")
+				each item in movies
+					.col-md-3
+						.thumbnail
+							a(href="/detail/#{item._id}")
+								img(src="#{item.poster}",alt="#{item.title}")
+							.caption
+								h4 #{item.title}
+								p: a.btn.btn-default(href="/detail/#{item._id}",role="button") 观看预告片

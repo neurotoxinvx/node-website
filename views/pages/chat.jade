@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	.jumbotron.masthead(style="padding-bottom:0;margin-bottom:0;")
+		.container(style="width:60%;height:500px;padding:20px;")
+			h3(style="margin-bottom:20px;") 留言板
+			.row(style="float:right;margin:0;")
+				ul.list-group(style="text-align:right;height:100%;")
+					each item in words
+						li.list-group-item #{item.word}
+
+			form(action="/sendmessage",method="POST")
+				.form-group
+					input.form-control(type="text",id="text",placeholder="请输入留言内容",name="chat[word]")
+					input.btn.btn-default(type="submit",value="发送",style="float:right;margin:10px 0;")
