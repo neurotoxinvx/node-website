@@ -16,7 +16,7 @@ var app = express();
  * 注意命令行开启mangodb服务:
  * mongod --dbpath=./db --port 27017
  * */
-mongoose.connect('mongodb://127.0.0.1/imooc');
+mongoose.connect('mongodb://127.0.0.1/node-website');
 
 mongoose.connection.on("error", function (error) {
     console.log("数据库连接失败：" + error);
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(port);
 
 //打印当前服务端口
-console.log('imooc started on port ' + port);
+console.log('node-website started on port ' + port);
 
 //--------------------------------------------------------------【页面渲染】
 // 首页
