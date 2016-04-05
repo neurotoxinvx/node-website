@@ -16,7 +16,7 @@ var app = express();
  * 注意命令行开启mangodb服务:
  * mongod --dbpath=./db --port 27017
  * */
-mongoose.connect('mongodb://127.0.0.1/node-website');
+mongoose.connect('mongodb://127.0.0.1/imooc');
 
 mongoose.connection.on("error", function (error) {
     console.log("数据库连接失败：" + error);

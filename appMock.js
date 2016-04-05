@@ -34,8 +34,8 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/film', function (req, res) {
-    res.render('film', {
+app.get('/list', function (req, res) {
+    res.render('list', {
         title: '看电影吗',
         movies: [{
             title: '疯狂动物城',
@@ -121,6 +121,33 @@ app.get('/film', function (req, res) {
     });
 });
 
+// 音乐页面
+app.get('/music', function(req, res){
+    res.render('music', {
+        title: '听歌儿吗'
+    });
+});
+
+// 聊天儿啊
+app.get('/chat', function(req, res){
+    res.render('chat', {
+        title: '聊天儿啊',
+        words: [
+        	{
+        		word: '这是静态数据'
+        	}
+        ]
+    });
+});
+
+// 加我微信啊
+
+app.get('/aboutme', function(req, res){
+    res.render('aboutme', {
+        title: '加我微信啊'
+    });
+});
+
 app.get('/movie/:id', function (req, res) {
     res.render('detail', {
         title: '电影详情',
@@ -137,8 +164,8 @@ app.get('/movie/:id', function (req, res) {
     });
 });
 
-app.get('/admin-film', function (req, res) {
-    res.render('film', {
+app.get('/admin-list', function (req, res) {
+    res.render('list', {
         title: '后台－修改列表页',
         movies:[{
             _id:1,
@@ -165,7 +192,7 @@ app.get('/admin-film', function (req, res) {
 });
 
 app.get('/admin/list', function (req, res) {
-    res.render('admin', {
+    res.render('admin-list', {
         title: '后台录入页',
         movie:{
             title: '',
@@ -176,6 +203,23 @@ app.get('/admin/list', function (req, res) {
             poster: '',
             flash: '',
             summary:''
+        }
+    });
+});
+
+// 电影后台录入
+app.get('/admin/input', function (req, res) {
+    res.render('input', {
+        title: '后台录入电影',
+        movie: {
+            title: '',
+            doctor: '',
+            year: '',
+            country: '',
+            language: '',
+            poster: '',
+            flash: '',
+            summary: ''
         }
     });
 });
