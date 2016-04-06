@@ -1,6 +1,21 @@
 # node-website
 基于nodejs + mongodb的站点建设
 
+### 目录结构
+```shell
+./node-website/ --目录
+├── models --数据模型
+├── node_modules --依赖的node模块
+├── public --公用文件
+   ├── css  --css文件
+   ├── libs --依赖的库
+   └── images  --图片文件夹
+├── schemas --数据库文档模型及方法函数
+├── views   --模版页面
+├── app.js  --带数据库版入口文件
+└── appMock.js --假数据版入库文件
+```
+
 ## 运行方式
 
 [安装node环境](https://nodejs.org/en/)
@@ -78,19 +93,4 @@ node appMock
 ### 客户端
 1. bootstrap
 2. jquery
-
-### 目录结构
-```shell
-./node-website/ --目录
-├── models --数据模型
-├── node_modules --依赖的node模块
-├── public --公用文件
-   ├── css  --css文件
-   ├── libs --依赖的库
-   └── images  --图片文件夹
-├── schemas --数据库文档模型及方法函数
-├── views   --模版页面
-├── app.js  --带数据库版入口文件
-└── appMock.js --假数据版入库文件
-```
 
