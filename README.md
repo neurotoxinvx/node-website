@@ -59,6 +59,8 @@ node appMock
 
 访问localhost:3000即可浏览主页
 
+注：必须同时启动数据库及node服务才可以访问
+
 补充：关于mongodb数据库的安装配置启动问题：
 [参考资料1](http://cnodejs.org/topic/547293caa3e2aee40698df0b)
 [参考资料2](http://stackoverflow.com/questions/22862808/mongod-comand-not-found-os-x)
@@ -91,3 +93,4 @@ node appMock
 ├── app.js  --带数据库版入口文件
 └── appMock.js --假数据版入库文件
 ```
+
