@@ -1,5 +1,5 @@
 # node-website
-基于nodejs + mongodb的站点建设
+基于express + mongodb的站点建设
 
 ## 目录结构
 ```shell
